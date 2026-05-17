@@ -28,25 +28,37 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
   transition: all 0.35s ease;
 }
 nav.scrolled {
-  background: rgba(240,247,250,0.93);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(240,247,250,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--border);
   box-shadow: 0 1px 24px rgba(26,107,138,0.1);
 }
-.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-.nav-logo span { color: var(--text); font-weight: 600; }
+.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: -0.5px; transition: color 0.35s; }
+.nav-logo span { color: rgba(255,255,255,0.75); font-weight: 600; transition: color 0.35s; }
+nav.scrolled .nav-logo { color: var(--primary); }
+nav.scrolled .nav-logo span { color: var(--text); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--primary); }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+nav.scrolled .nav-links a { color: var(--muted); }
+nav.scrolled .nav-links a:hover { color: var(--primary); }
 .nav-cta {
-  background: var(--primary); color: var(--white); padding: 10px 22px;
+  background: rgba(255,255,255,0.2); color: var(--white); padding: 10px 22px;
   border-radius: 8px; font-weight: 600; font-size: 0.9rem;
-  text-decoration: none; transition: background 0.2s, transform 0.2s;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.35);
+  transition: background 0.25s, transform 0.2s, border-color 0.25s;
 }
-.nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.nav-cta:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); }
+nav.scrolled .nav-cta { background: var(--primary); border-color: var(--primary); }
+nav.scrolled .nav-cta:hover { background: var(--primary-dark); }
 
 /* ── HERO ── */
 #inicio {
@@ -69,7 +81,7 @@ nav.scrolled {
   animation: float 12s ease-in-out infinite reverse;
 }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-28px)} }
-.hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.hero-inner { max-width: 900px; margin: 0 auto; width: 100%; position: relative; z-index: 1; text-align: center; }
 .hero-badge {
   display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
   padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
@@ -78,13 +90,13 @@ nav.scrolled {
 }
 .hero-title {
   font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; color: var(--white);
-  line-height: 1.08; letter-spacing: -1.5px; max-width: 700px; margin-bottom: 20px;
+  line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 20px;
 }
 .hero-sub {
-  font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 540px;
-  line-height: 1.75; margin-bottom: 40px;
+  font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 560px;
+  line-height: 1.75; margin-bottom: 40px; margin-left: auto; margin-right: auto;
 }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 68px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 68px; justify-content: center; }
 .btn-white {
   background: var(--white); color: var(--primary-dark); padding: 14px 30px;
   border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none;
@@ -97,7 +109,7 @@ nav.scrolled {
   transition: all 0.2s;
 }
 .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
-.hero-stats { display: flex; gap: 56px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 56px; flex-wrap: wrap; justify-content: center; }
 .stat { }
 .stat-num { font-size: 2.6rem; font-weight: 800; color: var(--white); line-height: 1; }
 .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 5px; }
