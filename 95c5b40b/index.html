@@ -1,530 +1,410 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthy - Tu Centro Médico Cercano | Alto Palermo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy — Tu Centro Médico Cercano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --canvas: #FBFBFA;
+  --white: #FFFFFF;
+  --card: #F9F9F8;
+  --border: #EAEAEA;
+  --ink: #111111;
+  --ink-muted: #6B6B6B;
+  --ink-light: #A0A0A0;
+  --accent-bg: #E1F3FE;
+  --accent-text: #1a6b8a;
+  --cta: #111111;
+  --cta-hover: #2a2a2a;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--canvas); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    :root {
-      --primary: #1a6b8a;
-      --primary-dark: #0f4a61;
-      --primary-light: #2a8ab0;
-      --bg: #f0f7fa;
-      --white: #ffffff;
-      --text: #1a2332;
-      --text-muted: #5a6a7a;
-      --border: #d0e8f0;
-      --whatsapp: #25D366;
-    }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  background: rgba(251,251,250,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: var(--border);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-size: 0.875rem; font-weight: 600; color: var(--white);
+  background: var(--cta); padding: 9px 20px; border-radius: 6px;
+  text-decoration: none; transition: transform 0.15s;
+}
+.nav-cta:hover { transform: scale(0.98); }
 
-    html { scroll-behavior: smooth; }
+/* ── HERO ── */
+#inicio {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 40px 80px; position: relative; overflow: hidden;
+  background: var(--canvas);
+}
+.hero-noise {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-accent-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent-text) 0%, transparent 100%);
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent-text); background: var(--accent-bg);
+  padding: 5px 14px; border-radius: 4px; margin-bottom: 32px;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-text); }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -2px;
+  color: var(--ink); max-width: 800px; margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; color: var(--ink-muted); }
+.hero-sub {
+  font-size: 1.05rem; color: var(--ink-muted); max-width: 520px;
+  line-height: 1.75; margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 72px; }
+.btn-primary {
+  background: var(--cta); color: var(--white); padding: 13px 28px;
+  border-radius: 6px; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; transition: transform 0.15s;
+}
+.btn-primary:hover { transform: scale(0.98); }
+.btn-ghost {
+  border: 1px solid var(--border); color: var(--ink); padding: 13px 28px;
+  border-radius: 6px; font-weight: 500; font-size: 0.95rem;
+  text-decoration: none; transition: background 0.2s;
+  background: var(--white);
+}
+.btn-ghost:hover { background: var(--card); }
+.hero-stats { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; background: var(--white); overflow: hidden; width: fit-content; }
+.stat { padding: 20px 36px; border-right: 1px solid var(--border); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--ink); line-height: 1; }
+.stat-num sup { font-size: 1rem; }
+.stat-label { font-size: 0.78rem; color: var(--ink-light); margin-top: 4px; letter-spacing: 0.3px; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-      font-size: 16px;
-    }
+/* ── SHARED ── */
+.section-container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink-light); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 800; letter-spacing: -1px; line-height: 1.15; color: var(--ink);
+  margin-bottom: 16px;
+}
+.section-rule { width: 40px; height: 1px; background: var(--border); margin: 20px 0; }
+.section-sub { font-size: 1rem; color: var(--ink-muted); line-height: 1.75; max-width: 520px; }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 1rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+/* ── ANIMATIONS ── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-right { opacity: 0; transform: translateX(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.in, .fade-left.in, .fade-right.in { opacity: 1; transform: none; }
 
-    .nav-logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--primary);
-      text-decoration: none;
-    }
+/* ── WHY ── */
+#por-que { padding: 100px 40px; border-top: 1px solid var(--border); }
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-top: 52px;
+}
+.bento-cell {
+  background: var(--white); padding: 36px 32px;
+  transition: background 0.2s;
+}
+.bento-cell:hover { background: var(--card); }
+.bento-cell.wide { grid-column: span 2; }
+.bento-icon { width: 36px; height: 36px; margin-bottom: 20px; }
+.bento-icon svg { width: 100%; height: 100%; stroke: var(--accent-text); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.bento-cell h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+.bento-cell p { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.7; }
+.bento-tag { display: inline-block; background: var(--accent-bg); color: var(--accent-text); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 14px; }
 
-    .nav-cta {
-      background: var(--primary);
-      color: var(--white);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--primary-dark); }
+/* ── SERVICIOS ── */
+#servicios { padding: 100px 40px; background: var(--white); border-top: 1px solid var(--border); }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+.service-cell { background: var(--canvas); padding: 32px 28px; transition: background 0.2s, transform 0.25s; }
+.service-cell:hover { background: var(--white); transform: translateY(-2px); }
+.service-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; color: var(--border); margin-bottom: 16px; line-height: 1; }
+.service-cell h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+.service-cell p { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.65; }
 
-    /* ===== HERO ===== */
-    #hero {
-      margin-top: 60px;
-      min-height: calc(100vh - 60px);
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 3rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
+/* ── NOSOTROS ── */
+#nosotros { padding: 100px 40px; border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 52px; }
+.about-text p { color: var(--ink-muted); line-height: 1.8; margin-bottom: 18px; font-size: 0.975rem; }
+.about-img-wrap { position: relative; }
+.about-img-wrap img { width: 100%; height: 420px; object-fit: cover; border-radius: 10px; display: block; filter: saturate(0.8); }
+.about-img-label {
+  position: absolute; bottom: 16px; left: 16px;
+  background: rgba(251,251,250,0.92); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 10px 16px; font-size: 0.8rem; color: var(--ink-muted);
+}
+.about-img-label strong { display: block; font-size: 0.9rem; color: var(--ink); font-weight: 600; }
 
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80') center/cover no-repeat;
-      opacity: 0.12;
-    }
+/* ── TESTIMONIOS ── */
+#testimonios { padding: 100px 40px; background: var(--white); border-top: 1px solid var(--border); }
+.testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+.testi-cell { background: var(--canvas); padding: 40px 36px; }
+.stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.stars svg { width: 14px; height: 14px; fill: #D4A017; }
+.testi-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--ink); line-height: 1.7; margin-bottom: 24px; }
+.testi-meta { font-size: 0.8rem; color: var(--ink-light); }
+.testi-meta strong { display: block; color: var(--ink); font-size: 0.875rem; font-style: normal; font-family: 'DM Sans', sans-serif; font-weight: 600; }
 
-    .hero-content { position: relative; z-index: 1; max-width: 600px; }
+/* ── CÓMO FUNCIONA ── */
+#como-funciona { padding: 100px 40px; border-top: 1px solid var(--border); }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+.step-cell { background: var(--white); padding: 40px 32px; }
+.step-num-badge {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800;
+  color: var(--ink-muted); margin-bottom: 20px;
+}
+.step-cell h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+.step-cell p { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.7; }
 
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      color: var(--white);
-      padding: 0.35rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
+/* ── CONTACTO ── */
+#contacto { padding: 100px 40px; background: var(--ink); border-top: 1px solid #222; }
+#contacto .section-label { color: #666; }
+#contacto .section-title { color: var(--white); }
+#contacto .section-sub { color: #888; }
+#contacto .section-rule { background: #333; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 52px; }
+.contact-detail { display: flex; gap: 12px; margin-bottom: 16px; }
+.contact-detail svg { width: 16px; height: 16px; stroke: #666; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+.contact-detail span { font-size: 0.875rem; color: #888; line-height: 1.6; }
+form { display: flex; flex-direction: column; gap: 12px; }
+input, textarea {
+  padding: 12px 16px; border: 1px solid #2a2a2a; border-radius: 6px;
+  background: #191919; color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+input::placeholder, textarea::placeholder { color: #555; }
+input:focus, textarea:focus { border-color: #444; }
+textarea { min-height: 110px; resize: vertical; }
+.btn-submit {
+  background: var(--white); color: var(--ink); padding: 13px;
+  border-radius: 6px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+  transition: transform 0.15s;
+}
+.btn-submit:hover { transform: scale(0.98); }
 
-    .hero-title {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
+/* ── FOOTER ── */
+footer {
+  background: #0d0d0d; border-top: 1px solid #1a1a1a;
+  padding: 32px 40px; display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #555; }
+.footer-info { font-size: 0.8rem; color: #444; line-height: 1.6; }
 
-    .hero-tagline {
-      font-size: clamp(1rem, 3vw, 1.25rem);
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
+/* ── WA FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 54px; height: 54px; background: #25D366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+  text-decoration: none; transition: transform 0.2s;
+}
+.wa-float:hover { transform: scale(1.08); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
 
-    .hero-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--white);
-      color: var(--primary);
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.28); }
-
-    .hero-stats {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-stat { color: var(--white); text-align: center; }
-    .hero-stat strong { display: block; font-size: 1.6rem; font-weight: 800; }
-    .hero-stat span { font-size: 0.8rem; opacity: 0.8; }
-
-    /* ===== SECTIONS GENERAL ===== */
-    section { padding: 4rem 1.5rem; }
-    .section-inner { max-width: 900px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      line-height: 1.2;
-    }
-
-    .section-sub {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ===== WHY US ===== */
-    #why { background: var(--bg); }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-
-    @media(min-width: 600px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
-    @media(min-width: 900px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,107,138,0.12); }
-
-    .card-icon {
-      width: 48px; height: 48px;
-      background: var(--bg);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
-    .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
-
-    /* ===== SERVICES ===== */
-    #services { background: var(--white); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    @media(min-width: 700px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
-
-    .service-card {
-      background: var(--bg);
-      border-radius: 12px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      border: 1px solid var(--border);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .service-card:hover { background: var(--primary); transform: translateY(-2px); }
-    .service-card:hover .service-icon, .service-card:hover h3, .service-card:hover p { color: var(--white); }
-
-    .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .service-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .service-card p { font-size: 0.8rem; color: var(--text-muted); }
-    .service-card:hover p { color: rgba(255,255,255,0.8); }
-
-    /* ===== TESTIMONIALS ===== */
-    #testimonials { background: var(--primary-dark); }
-
-    #testimonials .section-title { color: var(--white); }
-    #testimonials .section-label { color: rgba(255,255,255,0.7); }
-    #testimonials .section-sub { color: rgba(255,255,255,0.7); }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-    @media(min-width: 640px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
-
-    .testimonial {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-    }
-
-    .testimonial-stars { color: #fbbf24; font-size: 1rem; margin-bottom: 0.75rem; }
-    .testimonial p { color: rgba(255,255,255,0.9); font-style: italic; margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.6; }
-    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
-
-    .testimonial-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--primary-light);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; color: var(--white); font-size: 0.9rem;
-    }
-
-    .testimonial-name { font-weight: 600; color: var(--white); font-size: 0.9rem; }
-    .testimonial-detail { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
-
-    /* ===== HOW IT WORKS ===== */
-    #how { background: var(--bg); }
-
-    .steps { display: flex; flex-direction: column; gap: 1.5rem; }
-    @media(min-width: 700px) { .steps { flex-direction: row; gap: 1.25rem; } }
-
-    .step {
-      flex: 1;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .step-number {
-      width: 40px; height: 40px;
-      background: var(--primary);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { font-size: 0.88rem; color: var(--text-muted); }
-
-    /* ===== GALLERY ===== */
-    #gallery { background: var(--white); }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    @media(min-width: 480px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
-    @media(min-width: 768px) { .gallery-grid { grid-template-columns: 1fr 1fr 1fr; } }
-
-    .gallery-item {
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-    }
-    .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-    .gallery-item:hover img { transform: scale(1.05); }
-
-    /* ===== CONTACT ===== */
-    #contact { background: var(--bg); }
-
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    @media(min-width: 700px) { .contact-wrapper { grid-template-columns: 1fr 1fr; } }
-
-    .contact-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
-
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-    .contact-item-icon {
-      width: 36px; height: 36px;
-      background: var(--primary);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .contact-item-text strong { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px; }
-    .contact-item-text span { font-size: 0.95rem; font-weight: 500; }
-
-    form { display: flex; flex-direction: column; gap: 1rem; }
-
-    form input, form textarea, form select {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      background: var(--white);
-      color: var(--text);
-      transition: border-color 0.2s;
-    }
-    form input:focus, form textarea:focus, form select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-    form textarea { min-height: 110px; resize: vertical; }
-
-    .btn-submit {
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      padding: 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--text);
-      color: rgba(255,255,255,0.8);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-    }
-    .footer-inner { max-width: 700px; margin: 0 auto; }
-    .footer-logo { font-weight: 800; font-size: 1.2rem; color: var(--white); margin-bottom: 0.5rem; }
-    .footer-address { font-size: 0.88rem; margin-bottom: 0.4rem; }
-    .footer-hours { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
-    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 1.25rem; }
-
-    /* ===== WHATSAPP FLOAT ===== */
-    .wa-float {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 200;
-      background: var(--whatsapp);
-      color: var(--white);
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem;
-      text-decoration: none;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.45);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 22px rgba(37,211,102,0.6); }
-    .wa-float svg { width: 28px; height: 28px; fill: white; }
-  </style>
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  #inicio, #por-que, #servicios, #nosotros, #testimonios, #como-funciona, #contacto { padding: 70px 20px; }
+  .bento-grid, .services-grid { grid-template-columns: 1fr; }
+  .bento-cell.wide { grid-column: span 1; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  footer { flex-direction: column; padding: 24px 20px; }
+  .hero-stats { flex-direction: column; width: 100%; }
+  .stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .stat:last-child { border-bottom: none; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">🏥 Healthy</a>
-  <a href="https://wa.me/541131454419?text=Hola%2C%20quiero%20pedir%20un%20turno%20en%20Healthy%20Alto%20Palermo" class="nav-cta" target="_blank" rel="noopener">Pedí tu turno</a>
+<nav id="navbar">
+  <div class="nav-logo">Healthy</div>
+  <ul class="nav-links">
+    <li><a href="#por-que">Por qué elegirnos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/541131454419" class="nav-cta">Pedí turno</a>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-content">
-    <span class="hero-badge">Alto Palermo · Buenos Aires</span>
-    <h1 class="hero-title">Healthy<br>Tu Centro Médico Cercano</h1>
-    <p class="hero-tagline">Atención médica de calidad en el corazón de Palermo. Especialistas, turnos rápidos y tecnología al servicio de tu salud.</p>
-    <a href="https://wa.me/541131454419?text=Hola%2C%20quiero%20pedir%20un%20turno%20en%20Healthy%20Alto%20Palermo" class="hero-btn" target="_blank" rel="noopener">
-      <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Pedí tu turno por WhatsApp
-    </a>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>+500</strong><span>Pacientes atendidos</span></div>
-      <div class="hero-stat"><strong>4.0★</strong><span>Calificación Google</span></div>
-      <div class="hero-stat"><strong>10+</strong><span>Especialidades</span></div>
+<section id="inicio">
+  <div class="hero-noise"></div>
+  <div class="hero-accent-bar"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Centro Médico · Alto Palermo</div>
+    <h1 class="hero-title fade-up">Medicina de calidad,<br><em>a pasos de tu casa</em></h1>
+    <p class="hero-sub fade-up" style="transition-delay:0.1s">Atención médica de primer nivel en el corazón de Palermo. Turnos rápidos, especialistas certificados y la comodidad que merecés.</p>
+    <div class="hero-actions fade-up" style="transition-delay:0.2s">
+      <a href="https://wa.me/541131454419" class="btn-primary">Pedí tu turno</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+    <div class="hero-stats fade-up" style="transition-delay:0.3s">
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="12">0</span><sup>+</sup></div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="4800">0</span><sup>+</sup></div>
+        <div class="stat-label">Pacientes atendidos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="8">0</span></div>
+        <div class="stat-label">Especialidades</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why">
-  <div class="section-inner">
-    <p class="section-label">¿Por qué elegirnos?</p>
-    <h2 class="section-title">Tu salud merece la mejor atención</h2>
-    <p class="section-sub">En Healthy combinamos tecnología, accesibilidad y profesionalismo para que tengas la mejor experiencia médica.</p>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-icon">🌐</div>
-        <h3>Turnos online sin esperas</h3>
-        <p>Agendá tu consulta desde donde estés, sin necesidad de llamar ni ir presencialmente. Tu tiempo vale.</p>
+<section id="por-que">
+  <div class="section-container">
+    <div class="fade-up">
+      <div class="section-label">Por qué elegirnos</div>
+      <h2 class="section-title">Tu salud merece más<br>que una clínica genérica</h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">En Alto Palermo Shopping, donde la accesibilidad y la excelencia médica se encuentran todos los días.</p>
+    </div>
+    <div class="bento-grid">
+      <div class="bento-cell wide fade-up" style="transition-delay:0.1s">
+        <div class="bento-tag">Acceso sin fricciones</div>
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        </div>
+        <h3>Turnos online disponibles 24/7</h3>
+        <p>Sin filas, sin llamadas eternas. Agendás tu turno desde el celular y llegás directo a la consulta. El sistema más ágil del barrio.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">📍</div>
+      <div class="bento-cell fade-up" style="transition-delay:0.2s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Médicos certificados</h3>
+        <p>Matrícula activa y especialización verificada. Confianza respaldada por años de trayectoria.</p>
+      </div>
+      <div class="bento-cell fade-up" style="transition-delay:0.1s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
         <h3>Ubicación privilegiada</h3>
-        <p>Estamos en Alto Palermo Shopping, con fácil acceso en transporte público, estacionamiento y en el corazón del barrio.</p>
+        <p>Primer Subsuelo del Alto Palermo Shopping. Subte, colectivo o a pie — siempre conveniente.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">👨‍⚕️</div>
-        <h3>Profesionales certificados</h3>
-        <p>Nuestro equipo médico tiene formación de excelencia. Cada especialista está habilitado y con experiencia comprobada.</p>
+      <div class="bento-cell fade-up" style="transition-delay:0.15s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Atención personalizada</h3>
+        <p>No sos un número. Seguimiento continuo y comunicación directa con tu médico de cabecera.</p>
+      </div>
+      <div class="bento-cell fade-up" style="transition-delay:0.2s">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Horarios amplios</h3>
+        <p>Lunes a viernes 9-18hs y sábados 9-13hs. Porque tu salud no espera hasta que tengas tiempo.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <p class="section-label">Nuestros servicios</p>
-    <h2 class="section-title">Todo lo que necesitás, en un solo lugar</h2>
-    <p class="section-sub">Atención integral para toda la familia, con cobertura de las principales obras sociales y prepagas.</p>
+<section id="servicios">
+  <div class="section-container">
+    <div class="fade-up">
+      <div class="section-label">Servicios</div>
+      <h2 class="section-title">Especialidades para<br>toda la familia</h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">Cobertura médica completa bajo un mismo techo, con los mejores profesionales de la zona.</p>
+    </div>
     <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🩺</div>
-        <h3>Consultas Médicas</h3>
-        <p>Medicina general y clínica médica para adultos y niños</p>
+      <div class="service-cell fade-up" style="transition-delay:0.05s">
+        <div class="service-num">01</div>
+        <h3>Clínica Médica</h3>
+        <p>Atención general para adultos. Diagnóstico, seguimiento y derivación a especialistas de confianza.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔬</div>
-        <h3>Especialidades</h3>
-        <p>Cardiología, pediatría, dermatología, ginecología y más</p>
+      <div class="service-cell fade-up" style="transition-delay:0.1s">
+        <div class="service-num">02</div>
+        <h3>Pediatría</h3>
+        <p>Cuidado integral de niños y adolescentes. Controles de crecimiento y vacunación completa.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🚑</div>
-        <h3>Urgencias</h3>
-        <p>Atención de urgencias con equipo listo para asistirte rápido</p>
+      <div class="service-cell fade-up" style="transition-delay:0.15s">
+        <div class="service-num">03</div>
+        <h3>Cardiología</h3>
+        <p>ECG, ecocardiograma y seguimiento preventivo. Corazón sano, vida plena.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">📅</div>
-        <h3>Turnos Online</h3>
-        <p>Reservá tu turno 24/7 desde el celular sin filas ni esperas</p>
+      <div class="service-cell fade-up" style="transition-delay:0.2s">
+        <div class="service-num">04</div>
+        <h3>Laboratorio</h3>
+        <p>Análisis clínicos con resultados en 24-48hs. Sin turno para extracción de lunes a viernes.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-inner">
-    <p class="section-label">Testimonios</p>
-    <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
-    <p class="section-sub">La confianza de nuestros pacientes es lo que nos impulsa a seguir mejorando cada día.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"Excelente atención desde la recepción hasta la consulta. El médico se tomó el tiempo de explicarme todo con claridad. Lo recomiendo ampliamente para toda la familia."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">MG</div>
-          <div>
-            <div class="testimonial-name">María González</div>
-            <div class="testimonial-detail">Paciente · Palermo</div>
-          </div>
+<section id="nosotros">
+  <div class="section-container">
+    <div class="about-grid">
+      <div class="fade-left">
+        <div class="section-label">Sobre nosotros</div>
+        <h2 class="section-title">Más de una década cuidando tu salud</h2>
+        <div class="section-rule"></div>
+        <div class="about-text">
+          <p>Healthy nació con una misión concreta: llevar atención médica de calidad al cotidiano de los porteños. Desde el Alto Palermo Shopping, combinamos comodidad y excelencia en un espacio diseñado para que el paciente esté siempre en el centro.</p>
+          <p>Nuestro equipo médico selecciona profesionales no solo por su formación, sino por su trato humano. Creemos que una buena consulta empieza antes de la primera pregunta.</p>
         </div>
+        <a href="https://wa.me/541131454419" class="btn-primary" style="margin-top:8px; display:inline-block;">Consultá sin cargo</a>
       </div>
-      <div class="testimonial">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"Saqué el turno por WhatsApp y me atendieron puntual. El centro está muy bien equipado y el personal es muy amable. Perfecto para quienes trabajamos todo el día."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">LR</div>
-          <div>
-            <div class="testimonial-name">Lucas Ramírez</div>
-            <div class="testimonial-detail">Paciente · Recoleta</div>
+      <div class="fade-right">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80" alt="Equipo médico Healthy">
+          <div class="about-img-label">
+            <strong>Alto Palermo Shopping</strong>
+            Primer Subsuelo · CABA
           </div>
         </div>
       </div>
@@ -532,108 +412,167 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-inner">
-    <p class="section-label">¿Cómo funciona?</p>
-    <h2 class="section-title">Tres pasos para tu próxima consulta</h2>
-    <p class="section-sub">Simple, rápido y sin complicaciones.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>Contactanos por WhatsApp</h3>
-        <p>Escribinos con tu nombre y el motivo de consulta. Te respondemos en minutos.</p>
+<section id="testimonios">
+  <div class="section-container">
+    <div class="fade-up" style="text-align:left;">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-cell fade-up" style="transition-delay:0.1s">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testi-text">"Vine por primera vez sin turno y me atendieron igual. El médico fue muy detallista, me explicó todo sin apuro. Ahora vengo siempre con toda mi familia."</p>
+        <div class="testi-meta">
+          <strong>Marcela R.</strong>
+          Paciente de Clínica Médica
+        </div>
       </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>Elegí fecha y especialista</h3>
-        <p>Te ofrecemos los horarios disponibles y el médico que mejor se adapte a tus necesidades.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>Vení y recibí atención</h3>
-        <p>Presentate en Alto Palermo Shopping y te atendemos con puntualidad y profesionalismo.</p>
+      <div class="testi-cell fade-up" style="transition-delay:0.2s">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testi-text">"El pediatra es excelente. Mi hijo tiene miedo a los médicos y acá se sintió cómodo desde el primer momento. La ubicación en el shopping hace todo más fácil."</p>
+        <div class="testi-meta">
+          <strong>Carolina V.</strong>
+          Paciente de Pediatría
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-inner">
-    <p class="section-label">Nuestras instalaciones</p>
-    <h2 class="section-title">Un espacio pensado para vos</h2>
-    <p class="section-sub">Ambiente moderno, limpio y confortable para que tu visita sea la mejor experiencia.</p>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80" alt="Sala de espera clínica">
+<section id="como-funciona">
+  <div class="section-container">
+    <div class="fade-up">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tu turno en tres pasos</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-cell fade-up" style="transition-delay:0.1s">
+        <div class="step-num-badge">1</div>
+        <h3>Escribinos por WhatsApp</h3>
+        <p>Tu nombre, la especialidad que necesitás y cuándo te queda cómodo. Respondemos en minutos.</p>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80" alt="Consultorio médico moderno">
+      <div class="step-cell fade-up" style="transition-delay:0.2s">
+        <div class="step-num-badge">2</div>
+        <h3>Confirmamos tu turno</h3>
+        <p>Te mandamos la confirmación con horario y el nombre del médico que te va a atender.</p>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" alt="Equipo médico profesional">
+      <div class="step-cell fade-up" style="transition-delay:0.3s">
+        <div class="step-num-badge">3</div>
+        <h3>Venís y te atendemos</h3>
+        <p>Llegás al Primer Subsuelo del Alto Palermo Shopping. Sin esperas innecesarias.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <p class="section-label">Contacto</p>
-    <h2 class="section-title">¿Tenés alguna consulta?</h2>
-    <p class="section-sub">Completá el formulario o escribinos directo por WhatsApp. Te respondemos a la brevedad.</p>
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <h3>Información del centro</h3>
-        <div class="contact-item">
-          <div class="contact-item-icon">📍</div>
-          <div class="contact-item-text">
-            <strong>Dirección</strong>
-            <span>Alto Palermo Shopping, Primer Subsuelo<br>Av. Santa Fe 3253, C1425 CABA</span>
-          </div>
+<section id="contacto">
+  <div class="section-container">
+    <div class="contact-grid">
+      <div class="fade-left">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title" style="color:var(--white)">Hablemos</h2>
+        <div class="section-rule" style="background:#333"></div>
+        <p style="color:#888; font-size:0.95rem; line-height:1.75; margin-bottom:32px;">Estamos en el Alto Palermo Shopping, fácil de llegar desde cualquier punto de Palermo. También respondemos por WhatsApp en minutos.</p>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Alto Palermo Shopping, Primer Subsuelo<br>Av. Sta. Fe 3253, Buenos Aires</span>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">🕐</div>
-          <div class="contact-item-text">
-            <strong>Horario</strong>
-            <span>Lunes a Viernes: 8:00 – 20:00 hs<br>Sábados: 9:00 – 14:00 hs</span>
-          </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Lunes a Viernes 9-18hs · Sábados 9-13hs</span>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">💬</div>
-          <div class="contact-item-text">
-            <strong>WhatsApp</strong>
-            <span>+54 11 3145-4419</span>
-          </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+          <span>+54 11 5353-2121</span>
         </div>
       </div>
-      <form action="https://formspree.io/f/PLACEHOLDER" method="POST">
-        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
-        <input type="tel" name="telefono" placeholder="Tu teléfono">
-        <input type="email" name="email" placeholder="Tu email">
-        <textarea name="mensaje" placeholder="¿En qué podemos ayudarte?"></textarea>
-        <button type="submit" class="btn-submit">Enviar consulta</button>
-      </form>
+      <div class="fade-right">
+        <form action="https://formspree.io/f/PLACEHOLDER" method="POST">
+          <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+          <input type="tel" name="telefono" placeholder="Tu teléfono (WhatsApp)" required>
+          <textarea name="mensaje" placeholder="¿Con qué especialidad necesitás turno?"></textarea>
+          <button type="submit" class="btn-submit">Enviar consulta</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Healthy · Tu Centro Médico Cercano</div>
-    <p class="footer-address">Alto Palermo Shopping, Primer Subsuelo · Av. Santa Fe 3253, C1425 Buenos Aires</p>
-    <p class="footer-hours">Lunes a Viernes 8:00–20:00 · Sábados 9:00–14:00</p>
-    <p class="footer-copy">&copy; 2026 Healthy Centro Médico. Todos los derechos reservados.</p>
+  <div class="footer-brand">Healthy</div>
+  <div class="footer-info">
+    Alto Palermo Shopping, Primer Subsuelo · Av. Sta. Fe 3253, CABA · +54 11 5353-2121<br>
+    Lunes a Viernes 9-18hs · Sábados 9-13hs
   </div>
+  <div style="font-size:0.75rem; color:#333;">© 2026 Healthy</div>
 </footer>
 
-<!-- WHATSAPP FLOATING -->
-<a href="https://wa.me/541131454419?text=Hola%2C%20quiero%20pedir%20un%20turno%20en%20Healthy%20Alto%20Palermo" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/541131454419" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
+<script>
+// Navbar
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Intersection Observer
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => io.observe(el));
+
+// Counters
+function runCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const start = performance.now();
+  const dur = 1800;
+  const tick = now => {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(ease * target).toLocaleString('es-AR');
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { runCounter(e.target); cio.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => cio.observe(el));
+
+// Parallax hero (subtle)
+window.addEventListener('scroll', () => {
+  const s = window.pageYOffset;
+  if (s < window.innerHeight) {
+    document.querySelector('.hero-inner').style.transform = `translateY(${s * 0.15}px)`;
+  }
+}, { passive: true });
+
+// Trigger hero anims immediately
+setTimeout(() => {
+  document.querySelectorAll('#inicio .fade-up').forEach(el => el.classList.add('in'));
+}, 100);
+</script>
 </body>
 </html>
