@@ -3,270 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healthy — Tu Centro Médico Cercano</title>
+<title>Healthy — Tu Centro Médico Cercano | Alto Palermo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --canvas: #FBFBFA;
-  --white: #FFFFFF;
-  --card: #F9F9F8;
-  --border: #EAEAEA;
-  --ink: #111111;
-  --ink-muted: #6B6B6B;
-  --ink-light: #A0A0A0;
-  --accent-bg: #E1F3FE;
-  --accent-text: #1a6b8a;
-  --cta: #111111;
-  --cta-hover: #2a2a2a;
+  --primary: #1a6b8a;
+  --primary-dark: #0f4a61;
+  --primary-light: #2a8aad;
+  --bg: #f0f7fa;
+  --white: #ffffff;
+  --text: #1a2332;
+  --muted: #5a7a8c;
+  --border: #d0e4ee;
 }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
-  background: var(--canvas);
-  color: var(--ink);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--canvas); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 
 /* ── NAV ── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-  height: 64px; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; border-bottom: 1px solid transparent;
-  transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.35s ease;
 }
 nav.scrolled {
-  background: rgba(251,251,250,0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-color: var(--border);
+  background: rgba(240,247,250,0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 24px rgba(26,107,138,0.1);
 }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
-.nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--ink); }
+.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+.nav-logo span { color: var(--text); font-weight: 600; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--primary); }
 .nav-cta {
-  font-size: 0.875rem; font-weight: 600; color: var(--white);
-  background: var(--cta); padding: 9px 20px; border-radius: 6px;
-  text-decoration: none; transition: transform 0.15s;
+  background: var(--primary); color: var(--white); padding: 10px 22px;
+  border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+  text-decoration: none; transition: background 0.2s, transform 0.2s;
 }
-.nav-cta:hover { transform: scale(0.98); }
+.nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
 /* ── HERO ── */
 #inicio {
   min-height: 100vh; display: flex; align-items: center;
-  padding: 120px 40px 80px; position: relative; overflow: hidden;
-  background: var(--canvas);
+  padding: 100px 48px 80px;
+  background: linear-gradient(140deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-light) 100%);
+  position: relative; overflow: hidden;
 }
-.hero-noise {
-  position: absolute; inset: 0; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none;
+.hero-circle {
+  position: absolute; border-radius: 50%; pointer-events: none;
 }
-.hero-accent-bar {
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent-text) 0%, transparent 100%);
+.hero-circle-1 {
+  width: 600px; height: 600px; right: -150px; top: -150px;
+  background: rgba(255,255,255,0.04);
+  animation: float 9s ease-in-out infinite;
 }
+.hero-circle-2 {
+  width: 400px; height: 400px; right: 100px; bottom: -100px;
+  background: rgba(255,255,255,0.03);
+  animation: float 12s ease-in-out infinite reverse;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-28px)} }
 .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--accent-text); background: var(--accent-bg);
-  padding: 5px 14px; border-radius: 4px; margin-bottom: 32px;
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
+  padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 28px;
+  border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(6px);
 }
-.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-text); }
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  font-weight: 800; line-height: 1.05; letter-spacing: -2px;
-  color: var(--ink); max-width: 800px; margin-bottom: 24px;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; color: var(--white);
+  line-height: 1.08; letter-spacing: -1.5px; max-width: 700px; margin-bottom: 20px;
 }
-.hero-title em { font-style: italic; color: var(--ink-muted); }
 .hero-sub {
-  font-size: 1.05rem; color: var(--ink-muted); max-width: 520px;
+  font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 540px;
   line-height: 1.75; margin-bottom: 40px;
 }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 72px; }
-.btn-primary {
-  background: var(--cta); color: var(--white); padding: 13px 28px;
-  border-radius: 6px; font-weight: 600; font-size: 0.95rem;
-  text-decoration: none; transition: transform 0.15s;
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 68px; }
+.btn-white {
+  background: var(--white); color: var(--primary-dark); padding: 14px 30px;
+  border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
-.btn-primary:hover { transform: scale(0.98); }
-.btn-ghost {
-  border: 1px solid var(--border); color: var(--ink); padding: 13px 28px;
-  border-radius: 6px; font-weight: 500; font-size: 0.95rem;
-  text-decoration: none; transition: background 0.2s;
-  background: var(--white);
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.btn-outline-white {
+  border: 2px solid rgba(255,255,255,0.55); color: var(--white); padding: 14px 30px;
+  border-radius: 10px; font-weight: 600; font-size: 1rem; text-decoration: none;
+  transition: all 0.2s;
 }
-.btn-ghost:hover { background: var(--card); }
-.hero-stats { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; background: var(--white); overflow: hidden; width: fit-content; }
-.stat { padding: 20px 36px; border-right: 1px solid var(--border); }
-.stat:last-child { border-right: none; }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--ink); line-height: 1; }
-.stat-num sup { font-size: 1rem; }
-.stat-label { font-size: 0.78rem; color: var(--ink-light); margin-top: 4px; letter-spacing: 0.3px; }
+.btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+.hero-stats { display: flex; gap: 56px; flex-wrap: wrap; }
+.stat { }
+.stat-num { font-size: 2.6rem; font-weight: 800; color: var(--white); line-height: 1; }
+.stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 5px; }
 
 /* ── SHARED ── */
-.section-container { max-width: 1100px; margin: 0 auto; }
-.section-label {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--ink-light); margin-bottom: 12px;
+section { padding: 90px 48px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  display: inline-block; background: rgba(26,107,138,0.1); color: var(--primary);
+  padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
 }
 .section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 800; letter-spacing: -1px; line-height: 1.15; color: var(--ink);
-  margin-bottom: 16px;
+  font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800; color: var(--text);
+  letter-spacing: -1px; line-height: 1.2; margin-bottom: 14px;
 }
-.section-rule { width: 40px; height: 1px; background: var(--border); margin: 20px 0; }
-.section-sub { font-size: 1rem; color: var(--ink-muted); line-height: 1.75; max-width: 520px; }
+.section-title span { color: var(--primary); }
+.section-sub { color: var(--muted); font-size: 1.02rem; line-height: 1.75; max-width: 580px; }
+.divider { width: 48px; height: 4px; background: var(--primary); border-radius: 2px; margin: 16px 0; }
 
-/* ── ANIMATIONS ── */
-.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-right { opacity: 0; transform: translateX(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-up.in, .fade-left.in, .fade-right.in { opacity: 1; transform: none; }
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-l { opacity: 0; transform: translateX(-28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal-l.in { opacity: 1; transform: none; }
+.reveal-r { opacity: 0; transform: translateX(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal-r.in { opacity: 1; transform: none; }
 
 /* ── WHY ── */
-#por-que { padding: 100px 40px; border-top: 1px solid var(--border); }
-.bento-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1px; background: var(--border);
+#por-que { background: var(--white); }
+.cards-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; margin-top: 48px; }
+.card {
+  background: var(--bg); border-radius: 18px; padding: 36px 30px;
   border: 1px solid var(--border);
-  border-radius: 12px; overflow: hidden; margin-top: 52px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.bento-cell {
-  background: var(--white); padding: 36px 32px;
-  transition: background 0.2s;
+.card:hover { transform: translateY(-6px); box-shadow: 0 18px 52px rgba(26,107,138,0.13); }
+.card-icon {
+  width: 54px; height: 54px; background: rgba(26,107,138,0.1);
+  border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
 }
-.bento-cell:hover { background: var(--card); }
-.bento-cell.wide { grid-column: span 2; }
-.bento-icon { width: 36px; height: 36px; margin-bottom: 20px; }
-.bento-icon svg { width: 100%; height: 100%; stroke: var(--accent-text); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.bento-cell h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
-.bento-cell p { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.7; }
-.bento-tag { display: inline-block; background: var(--accent-bg); color: var(--accent-text); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 14px; }
+.card-icon svg { width: 26px; height: 26px; fill: var(--primary); }
+.card h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; }
+.card p { color: var(--muted); font-size: 0.93rem; line-height: 1.65; }
 
 /* ── SERVICIOS ── */
-#servicios { padding: 100px 40px; background: var(--white); border-top: 1px solid var(--border); }
-.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
-.service-cell { background: var(--canvas); padding: 32px 28px; transition: background 0.2s, transform 0.25s; }
-.service-cell:hover { background: var(--white); transform: translateY(-2px); }
-.service-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; color: var(--border); margin-bottom: 16px; line-height: 1; }
-.service-cell h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
-.service-cell p { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.65; }
+#servicios { background: var(--bg); }
+.services-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 48px; }
+.service-card {
+  background: var(--white); border-radius: 14px; padding: 30px 26px;
+  border-top: 4px solid var(--primary);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(26,107,138,0.11); }
+.service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.service-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
 
 /* ── NOSOTROS ── */
-#nosotros { padding: 100px 40px; border-top: 1px solid var(--border); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 52px; }
-.about-text p { color: var(--ink-muted); line-height: 1.8; margin-bottom: 18px; font-size: 0.975rem; }
-.about-img-wrap { position: relative; }
-.about-img-wrap img { width: 100%; height: 420px; object-fit: cover; border-radius: 10px; display: block; filter: saturate(0.8); }
-.about-img-label {
-  position: absolute; bottom: 16px; left: 16px;
-  background: rgba(251,251,250,0.92); backdrop-filter: blur(8px);
-  border: 1px solid var(--border); border-radius: 6px;
-  padding: 10px 16px; font-size: 0.8rem; color: var(--ink-muted);
-}
-.about-img-label strong { display: block; font-size: 0.9rem; color: var(--ink); font-weight: 600; }
+#nosotros { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-top: 48px; }
+.about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 18px; font-size: 0.97rem; }
+.about-img { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 64px rgba(26,107,138,0.14); }
+.about-img img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
 /* ── TESTIMONIOS ── */
-#testimonios { padding: 100px 40px; background: var(--white); border-top: 1px solid var(--border); }
-.testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
-.testi-cell { background: var(--canvas); padding: 40px 36px; }
-.stars { display: flex; gap: 3px; margin-bottom: 20px; }
-.stars svg { width: 14px; height: 14px; fill: #D4A017; }
-.testi-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--ink); line-height: 1.7; margin-bottom: 24px; }
-.testi-meta { font-size: 0.8rem; color: var(--ink-light); }
-.testi-meta strong { display: block; color: var(--ink); font-size: 0.875rem; font-style: normal; font-family: 'DM Sans', sans-serif; font-weight: 600; }
-
-/* ── CÓMO FUNCIONA ── */
-#como-funciona { padding: 100px 40px; border-top: 1px solid var(--border); }
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
-.step-cell { background: var(--white); padding: 40px 32px; }
-.step-num-badge {
-  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800;
-  color: var(--ink-muted); margin-bottom: 20px;
+#testimonios { background: var(--bg); }
+.testi-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+.testi-card {
+  background: var(--white); border-radius: 18px; padding: 34px;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.step-cell h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
-.step-cell p { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.7; }
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(26,107,138,0.1); }
+.stars { display: flex; gap: 4px; margin-bottom: 16px; }
+.stars svg { width: 17px; height: 17px; fill: #f59e0b; }
+.testi-text { color: var(--muted); font-size: 0.95rem; line-height: 1.72; margin-bottom: 20px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--primary); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem;
+}
+.testi-name { font-weight: 700; font-size: 0.9rem; }
+.testi-role { color: var(--muted); font-size: 0.78rem; }
+
+/* ── CÓMO ── */
+#como-funciona { background: var(--white); }
+.steps-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-top: 48px; }
+.step { text-align: center; padding: 32px 24px; }
+.step-num {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--primary); color: var(--white);
+  font-size: 1.4rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.step h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 10px; }
+.step p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
 
 /* ── CONTACTO ── */
-#contacto { padding: 100px 40px; background: var(--ink); border-top: 1px solid #222; }
-#contacto .section-label { color: #666; }
+#contacto { background: var(--primary-dark); }
 #contacto .section-title { color: var(--white); }
-#contacto .section-sub { color: #888; }
-#contacto .section-rule { background: #333; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 52px; }
-.contact-detail { display: flex; gap: 12px; margin-bottom: 16px; }
-.contact-detail svg { width: 16px; height: 16px; stroke: #666; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
-.contact-detail span { font-size: 0.875rem; color: #888; line-height: 1.6; }
-form { display: flex; flex-direction: column; gap: 12px; }
+#contacto .section-tag { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+#contacto .divider { background: rgba(255,255,255,0.35); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-top: 48px; }
+.contact-info p { color: rgba(255,255,255,0.72); line-height: 1.8; margin-bottom: 28px; font-size: 0.95rem; }
+.c-detail { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+.c-detail svg { width: 20px; height: 20px; fill: rgba(255,255,255,0.65); flex-shrink: 0; margin-top: 1px; }
+.c-detail span { color: rgba(255,255,255,0.82); font-size: 0.93rem; line-height: 1.55; }
+form { display: flex; flex-direction: column; gap: 14px; }
 input, textarea {
-  padding: 12px 16px; border: 1px solid #2a2a2a; border-radius: 6px;
-  background: #191919; color: var(--white); font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+  padding: 13px 17px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.07); color: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 0.93rem;
+  outline: none; transition: border-color 0.2s;
 }
-input::placeholder, textarea::placeholder { color: #555; }
-input:focus, textarea:focus { border-color: #444; }
-textarea { min-height: 110px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.38); }
+input:focus, textarea:focus { border-color: rgba(255,255,255,0.45); }
+textarea { min-height: 118px; resize: vertical; }
 .btn-submit {
-  background: var(--white); color: var(--ink); padding: 13px;
-  border-radius: 6px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
-  transition: transform 0.15s;
+  background: var(--white); color: var(--primary-dark); padding: 14px;
+  border-radius: 10px; font-weight: 700; font-size: 0.97rem; border: none;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-submit:hover { transform: scale(0.98); }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,0,0,0.2); }
 
 /* ── FOOTER ── */
 footer {
-  background: #0d0d0d; border-top: 1px solid #1a1a1a;
-  padding: 32px 40px; display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px;
+  background: #082d3e; padding: 36px 48px; text-align: center;
+  color: rgba(255,255,255,0.45); font-size: 0.83rem;
 }
-.footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #555; }
-.footer-info { font-size: 0.8rem; color: #444; line-height: 1.6; }
+footer strong { color: rgba(255,255,255,0.7); }
 
 /* ── WA FLOAT ── */
 .wa-float {
   position: fixed; bottom: 28px; right: 28px; z-index: 999;
-  width: 54px; height: 54px; background: #25D366; border-radius: 50%;
+  width: 58px; height: 58px; background: #25D366; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
-  text-decoration: none; transition: transform 0.2s;
+  box-shadow: 0 4px 22px rgba(37,211,102,0.4);
+  text-decoration: none; transition: transform 0.25s, box-shadow 0.25s;
 }
-.wa-float:hover { transform: scale(1.08); }
-.wa-float svg { width: 28px; height: 28px; fill: white; }
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 34px rgba(37,211,102,0.5); }
+.wa-float svg { width: 30px; height: 30px; fill: white; }
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  #inicio, #por-que, #servicios, #nosotros, #testimonios, #como-funciona, #contacto { padding: 70px 20px; }
-  .bento-grid, .services-grid { grid-template-columns: 1fr; }
-  .bento-cell.wide { grid-column: span 1; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-  footer { flex-direction: column; padding: 24px 20px; }
-  .hero-stats { flex-direction: column; width: 100%; }
-  .stat { border-right: none; border-bottom: 1px solid var(--border); }
-  .stat:last-child { border-bottom: none; }
+  #inicio, section { padding: 72px 20px; }
+  #inicio { padding-top: 100px; }
+  .hero-stats { gap: 32px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="nav-logo">Healthy</div>
+<nav id="nav">
+  <div class="nav-logo">Healthy <span>Médico</span></div>
   <ul class="nav-links">
     <li><a href="#por-que">Por qué elegirnos</a></li>
     <li><a href="#servicios">Servicios</a></li>
@@ -276,24 +267,25 @@ footer {
   <a href="https://wa.me/541131454419" class="nav-cta">Pedí turno</a>
 </nav>
 
+<!-- HERO -->
 <section id="inicio">
-  <div class="hero-noise"></div>
-  <div class="hero-accent-bar"></div>
+  <div class="hero-circle hero-circle-1"></div>
+  <div class="hero-circle hero-circle-2"></div>
   <div class="hero-inner">
-    <div class="hero-tag">Centro Médico · Alto Palermo</div>
-    <h1 class="hero-title fade-up">Medicina de calidad,<br><em>a pasos de tu casa</em></h1>
-    <p class="hero-sub fade-up" style="transition-delay:0.1s">Atención médica de primer nivel en el corazón de Palermo. Turnos rápidos, especialistas certificados y la comodidad que merecés.</p>
-    <div class="hero-actions fade-up" style="transition-delay:0.2s">
-      <a href="https://wa.me/541131454419" class="btn-primary">Pedí tu turno</a>
-      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    <div class="hero-badge">Centro Médico · Alto Palermo Shopping</div>
+    <h1 class="hero-title">Tu salud, a pasos del shopping</h1>
+    <p class="hero-sub">Médicos de primer nivel en el corazón de Palermo. Turno online en minutos, atención de calidad cuando más lo necesitás.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/541131454419" class="btn-white">Pedí tu turno</a>
+      <a href="#servicios" class="btn-outline-white">Ver servicios</a>
     </div>
-    <div class="hero-stats fade-up" style="transition-delay:0.3s">
+    <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num"><span class="counter" data-target="12">0</span><sup>+</sup></div>
+        <div class="stat-num"><span class="counter" data-target="12">0</span>+</div>
         <div class="stat-label">Años de experiencia</div>
       </div>
       <div class="stat">
-        <div class="stat-num"><span class="counter" data-target="4800">0</span><sup>+</sup></div>
+        <div class="stat-num"><span class="counter" data-target="4800">0</span>+</div>
         <div class="stat-label">Pacientes atendidos</div>
       </div>
       <div class="stat">
@@ -304,174 +296,150 @@ footer {
   </div>
 </section>
 
+<!-- POR QUÉ -->
 <section id="por-que">
-  <div class="section-container">
-    <div class="fade-up">
-      <div class="section-label">Por qué elegirnos</div>
-      <h2 class="section-title">Tu salud merece más<br>que una clínica genérica</h2>
-      <div class="section-rule"></div>
-      <p class="section-sub">En Alto Palermo Shopping, donde la accesibilidad y la excelencia médica se encuentran todos los días.</p>
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Por qué elegirnos</span>
+      <h2 class="section-title">Salud de <span>calidad</span> al alcance de todos</h2>
+      <div class="divider"></div>
+      <p class="section-sub">En Alto Palermo Shopping, donde accesibilidad y excelencia médica se combinan cada día.</p>
     </div>
-    <div class="bento-grid">
-      <div class="bento-cell wide fade-up" style="transition-delay:0.1s">
-        <div class="bento-tag">Acceso sin fricciones</div>
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-        </div>
-        <h3>Turnos online disponibles 24/7</h3>
-        <p>Sin filas, sin llamadas eternas. Agendás tu turno desde el celular y llegás directo a la consulta. El sistema más ágil del barrio.</p>
+    <div class="cards-3">
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+        <h3>Turnos online sin esperas</h3>
+        <p>Agendás desde el celular las 24 horas. Elegís el día, la hora y el especialista que mejor se adapte a tu rutina.</p>
       </div>
-      <div class="bento-cell fade-up" style="transition-delay:0.2s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
         <h3>Médicos certificados</h3>
-        <p>Matrícula activa y especialización verificada. Confianza respaldada por años de trayectoria.</p>
+        <p>Matrícula activa y especialización verificada. Tu salud en manos expertas y de confianza.</p>
       </div>
-      <div class="bento-cell fade-up" style="transition-delay:0.1s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
+      <div class="card reveal" style="transition-delay:.3s">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
         <h3>Ubicación privilegiada</h3>
-        <p>Primer Subsuelo del Alto Palermo Shopping. Subte, colectivo o a pie — siempre conveniente.</p>
-      </div>
-      <div class="bento-cell fade-up" style="transition-delay:0.15s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Atención personalizada</h3>
-        <p>No sos un número. Seguimiento continuo y comunicación directa con tu médico de cabecera.</p>
-      </div>
-      <div class="bento-cell fade-up" style="transition-delay:0.2s">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3>Horarios amplios</h3>
-        <p>Lunes a viernes 9-18hs y sábados 9-13hs. Porque tu salud no espera hasta que tengas tiempo.</p>
+        <p>Primer Subsuelo del Alto Palermo Shopping. Subte, colectivo o a pie — siempre a mano.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SERVICIOS -->
 <section id="servicios">
-  <div class="section-container">
-    <div class="fade-up">
-      <div class="section-label">Servicios</div>
-      <h2 class="section-title">Especialidades para<br>toda la familia</h2>
-      <div class="section-rule"></div>
-      <p class="section-sub">Cobertura médica completa bajo un mismo techo, con los mejores profesionales de la zona.</p>
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Servicios</span>
+      <h2 class="section-title">Nuestras <span>especialidades</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Cobertura médica completa para toda la familia bajo un mismo techo.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-cell fade-up" style="transition-delay:0.05s">
-        <div class="service-num">01</div>
+    <div class="services-4">
+      <div class="service-card reveal" style="transition-delay:.1s">
         <h3>Clínica Médica</h3>
-        <p>Atención general para adultos. Diagnóstico, seguimiento y derivación a especialistas de confianza.</p>
+        <p>Atención general para adultos. Diagnóstico, seguimiento y derivación a especialistas.</p>
       </div>
-      <div class="service-cell fade-up" style="transition-delay:0.1s">
-        <div class="service-num">02</div>
+      <div class="service-card reveal" style="transition-delay:.15s">
         <h3>Pediatría</h3>
-        <p>Cuidado integral de niños y adolescentes. Controles de crecimiento y vacunación completa.</p>
+        <p>Cuidado integral de niños y adolescentes. Controles y vacunación al día.</p>
       </div>
-      <div class="service-cell fade-up" style="transition-delay:0.15s">
-        <div class="service-num">03</div>
+      <div class="service-card reveal" style="transition-delay:.2s">
         <h3>Cardiología</h3>
-        <p>ECG, ecocardiograma y seguimiento preventivo. Corazón sano, vida plena.</p>
+        <p>ECG, ecocardiogramas y seguimiento preventivo cardiovascular.</p>
       </div>
-      <div class="service-cell fade-up" style="transition-delay:0.2s">
-        <div class="service-num">04</div>
+      <div class="service-card reveal" style="transition-delay:.25s">
         <h3>Laboratorio</h3>
-        <p>Análisis clínicos con resultados en 24-48hs. Sin turno para extracción de lunes a viernes.</p>
+        <p>Análisis clínicos con resultados en 24-48hs. Extracción sin turno previo.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- NOSOTROS -->
 <section id="nosotros">
-  <div class="section-container">
+  <div class="container">
     <div class="about-grid">
-      <div class="fade-left">
-        <div class="section-label">Sobre nosotros</div>
-        <h2 class="section-title">Más de una década cuidando tu salud</h2>
-        <div class="section-rule"></div>
+      <div class="reveal-l">
+        <span class="section-tag">Sobre nosotros</span>
+        <h2 class="section-title">Más de una <span>década</span> cuidando tu salud</h2>
+        <div class="divider"></div>
         <div class="about-text">
-          <p>Healthy nació con una misión concreta: llevar atención médica de calidad al cotidiano de los porteños. Desde el Alto Palermo Shopping, combinamos comodidad y excelencia en un espacio diseñado para que el paciente esté siempre en el centro.</p>
-          <p>Nuestro equipo médico selecciona profesionales no solo por su formación, sino por su trato humano. Creemos que una buena consulta empieza antes de la primera pregunta.</p>
+          <p>Healthy nació con una misión clara: acercar la atención médica de calidad al cotidiano de los porteños. Ubicados en el Alto Palermo Shopping, somos el centro de salud más accesible de la zona norte de CABA.</p>
+          <p>Nuestro equipo médico combina experiencia y calidez humana. Creemos que una buena medicina empieza con la escucha activa y el seguimiento personalizado de cada paciente.</p>
         </div>
-        <a href="https://wa.me/541131454419" class="btn-primary" style="margin-top:8px; display:inline-block;">Consultá sin cargo</a>
+        <a href="https://wa.me/541131454419" class="nav-cta" style="display:inline-block; margin-top:24px;">Consultá sin cargo</a>
       </div>
-      <div class="fade-right">
-        <div class="about-img-wrap">
+      <div class="reveal-r">
+        <div class="about-img">
           <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80" alt="Equipo médico Healthy">
-          <div class="about-img-label">
-            <strong>Alto Palermo Shopping</strong>
-            Primer Subsuelo · CABA
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TESTIMONIOS -->
 <section id="testimonios">
-  <div class="section-container">
-    <div class="fade-up" style="text-align:left;">
-      <div class="section-label">Testimonios</div>
-      <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
-      <div class="section-rule"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-tag">Testimonios</span>
+      <h2 class="section-title">Lo que dicen <span>nuestros pacientes</span></h2>
+      <div class="divider" style="margin:16px auto"></div>
     </div>
-    <div class="testi-grid">
-      <div class="testi-cell fade-up" style="transition-delay:0.1s">
+    <div class="testi-2">
+      <div class="testi-card reveal" style="transition-delay:.1s">
         <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
-        <p class="testi-text">"Vine por primera vez sin turno y me atendieron igual. El médico fue muy detallista, me explicó todo sin apuro. Ahora vengo siempre con toda mi familia."</p>
-        <div class="testi-meta">
-          <strong>Marcela R.</strong>
-          Paciente de Clínica Médica
+        <p class="testi-text">"Vine por primera vez sin turno y me atendieron igual. El médico fue muy detallista, me explicó todo con paciencia. Ahora vengo siempre acá con toda mi familia."</p>
+        <div class="testi-author">
+          <div class="testi-av">M</div>
+          <div><div class="testi-name">Marcela R.</div><div class="testi-role">Paciente de Clínica Médica</div></div>
         </div>
       </div>
-      <div class="testi-cell fade-up" style="transition-delay:0.2s">
+      <div class="testi-card reveal" style="transition-delay:.2s">
         <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </div>
-        <p class="testi-text">"El pediatra es excelente. Mi hijo tiene miedo a los médicos y acá se sintió cómodo desde el primer momento. La ubicación en el shopping hace todo más fácil."</p>
-        <div class="testi-meta">
-          <strong>Carolina V.</strong>
-          Paciente de Pediatría
+        <p class="testi-text">"El pediatra es excelente. Mi hijo tiene miedo a los médicos pero acá se siente cómodo. La ubicación en el shopping hace todo más fácil."</p>
+        <div class="testi-author">
+          <div class="testi-av">C</div>
+          <div><div class="testi-name">Carolina V.</div><div class="testi-role">Paciente de Pediatría</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CÓMO FUNCIONA -->
 <section id="como-funciona">
-  <div class="section-container">
-    <div class="fade-up">
-      <div class="section-label">Cómo funciona</div>
-      <h2 class="section-title">Tu turno en tres pasos</h2>
-      <div class="section-rule"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-tag">Cómo funciona</span>
+      <h2 class="section-title">Turno en <span>3 pasos</span></h2>
+      <div class="divider" style="margin:16px auto"></div>
     </div>
-    <div class="steps-grid">
-      <div class="step-cell fade-up" style="transition-delay:0.1s">
-        <div class="step-num-badge">1</div>
+    <div class="steps-3">
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-num">1</div>
         <h3>Escribinos por WhatsApp</h3>
-        <p>Tu nombre, la especialidad que necesitás y cuándo te queda cómodo. Respondemos en minutos.</p>
+        <p>Tu nombre, especialidad que necesitás y cuándo te queda cómodo. Respondemos en minutos.</p>
       </div>
-      <div class="step-cell fade-up" style="transition-delay:0.2s">
-        <div class="step-num-badge">2</div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-num">2</div>
         <h3>Confirmamos tu turno</h3>
-        <p>Te mandamos la confirmación con horario y el nombre del médico que te va a atender.</p>
+        <p>Te enviamos la confirmación con horario y el nombre del médico.</p>
       </div>
-      <div class="step-cell fade-up" style="transition-delay:0.3s">
-        <div class="step-num-badge">3</div>
+      <div class="step reveal" style="transition-delay:.3s">
+        <div class="step-num">3</div>
         <h3>Venís y te atendemos</h3>
         <p>Llegás al Primer Subsuelo del Alto Palermo Shopping. Sin esperas innecesarias.</p>
       </div>
@@ -479,28 +447,31 @@ footer {
   </div>
 </section>
 
+<!-- CONTACTO -->
 <section id="contacto">
-  <div class="section-container">
+  <div class="container">
     <div class="contact-grid">
-      <div class="fade-left">
-        <div class="section-label">Contacto</div>
-        <h2 class="section-title" style="color:var(--white)">Hablemos</h2>
-        <div class="section-rule" style="background:#333"></div>
-        <p style="color:#888; font-size:0.95rem; line-height:1.75; margin-bottom:32px;">Estamos en el Alto Palermo Shopping, fácil de llegar desde cualquier punto de Palermo. También respondemos por WhatsApp en minutos.</p>
-        <div class="contact-detail">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="reveal-l">
+        <span class="section-tag">Contacto</span>
+        <h2 class="section-title">¿Querés <span style="color:rgba(255,255,255,0.7)">saber más</span>?</h2>
+        <div class="divider"></div>
+        <div class="contact-info">
+          <p>Estamos en el Alto Palermo Shopping, fácil de llegar en subte o colectivo. También respondemos por WhatsApp en minutos.</p>
+        </div>
+        <div class="c-detail">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           <span>Alto Palermo Shopping, Primer Subsuelo<br>Av. Sta. Fe 3253, Buenos Aires</span>
         </div>
-        <div class="contact-detail">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="c-detail">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
           <span>Lunes a Viernes 9-18hs · Sábados 9-13hs</span>
         </div>
-        <div class="contact-detail">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+        <div class="c-detail">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
           <span>+54 11 5353-2121</span>
         </div>
       </div>
-      <div class="fade-right">
+      <div class="reveal-r">
         <form action="https://formspree.io/f/PLACEHOLDER" method="POST">
           <input type="text" name="nombre" placeholder="Tu nombre completo" required>
           <input type="tel" name="telefono" placeholder="Tu teléfono (WhatsApp)" required>
@@ -513,12 +484,9 @@ footer {
 </section>
 
 <footer>
-  <div class="footer-brand">Healthy</div>
-  <div class="footer-info">
-    Alto Palermo Shopping, Primer Subsuelo · Av. Sta. Fe 3253, CABA · +54 11 5353-2121<br>
-    Lunes a Viernes 9-18hs · Sábados 9-13hs
-  </div>
-  <div style="font-size:0.75rem; color:#333;">© 2026 Healthy</div>
+  <p><strong>Healthy — Tu Centro Médico Cercano</strong></p>
+  <p style="margin-top:8px">Alto Palermo Shopping, Primer Subsuelo · Av. Sta. Fe 3253, Buenos Aires · +54 11 5353-2121</p>
+  <p style="margin-top:10px">© 2026 Healthy. Todos los derechos reservados.</p>
 </footer>
 
 <a href="https://wa.me/541131454419" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -526,28 +494,16 @@ footer {
 </a>
 
 <script>
-// Navbar
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
 
-// Intersection Observer
 const io = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => io.observe(el));
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => io.observe(el));
 
-// Counters
-function runCounter(el) {
-  const target = parseInt(el.dataset.target);
-  const start = performance.now();
-  const dur = 1800;
+function animCounter(el) {
+  const target = +el.dataset.target, dur = 1900, start = performance.now();
   const tick = now => {
     const p = Math.min((now - start) / dur, 1);
     const ease = 1 - Math.pow(1 - p, 3);
@@ -557,22 +513,14 @@ function runCounter(el) {
   requestAnimationFrame(tick);
 }
 const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { runCounter(e.target); cio.unobserve(e.target); } });
+  entries.forEach(e => { if (e.isIntersecting) { animCounter(e.target); cio.unobserve(e.target); } });
 }, { threshold: 0.5 });
 document.querySelectorAll('.counter').forEach(el => cio.observe(el));
 
-// Parallax hero (subtle)
 window.addEventListener('scroll', () => {
   const s = window.pageYOffset;
-  if (s < window.innerHeight) {
-    document.querySelector('.hero-inner').style.transform = `translateY(${s * 0.15}px)`;
-  }
+  if (s < window.innerHeight) document.getElementById('inicio').style.backgroundPositionY = (s * 0.38) + 'px';
 }, { passive: true });
-
-// Trigger hero anims immediately
-setTimeout(() => {
-  document.querySelectorAll('#inicio .fade-up').forEach(el => el.classList.add('in'));
-}, 100);
 </script>
 </body>
 </html>
