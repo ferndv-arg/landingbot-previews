@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Juan Antonio Palermo | Médico Especialista · Aldo Bonzi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a6b8a;
+      --primary-dark: #0f4a61;
+      --primary-light: #2a8ab0;
+      --bg: #f0f7fa;
+      --white: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5a6a7a;
+      --border: #d0e8f0;
+      --whatsapp: #25D366;
+      --gold: #f59e0b;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.25rem; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-weight: 700; font-size: 1rem; color: var(--primary); text-decoration: none; }
+    .nav-cta {
+      background: var(--primary); color: var(--white);
+      padding: 0.5rem 1rem; border-radius: 6px;
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--primary-dark); }
+
+    /* HERO */
+    #hero {
+      margin-top: 60px;
+      background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 55%, #1a8ab0 100%);
+      padding: 4rem 1.5rem 3rem;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center/cover no-repeat;
+      opacity: 0.1;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 620px; }
+
+    .hero-rating {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.4rem 1rem; border-radius: 50px;
+      color: var(--white); font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-rating .stars { color: var(--gold); }
+
+    .hero-title {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .hero-specialty {
+      font-size: 1.1rem; color: rgba(255,255,255,0.75);
+      font-weight: 400; margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.88); margin-bottom: 2rem;
+    }
+
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--white); color: var(--primary);
+      padding: 1rem 2rem; border-radius: 50px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.28); }
+    .hero-btn svg { width: 20px; height: 20px; fill: var(--primary); }
+
+    .hero-creds {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .hero-cred {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px; padding: 0.6rem 1rem;
+      color: rgba(255,255,255,0.9); font-size: 0.82rem; font-weight: 500;
+    }
+
+    /* SECTIONS */
+    section { padding: 4rem 1.5rem; }
+    .section-inner { max-width: 880px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--primary); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 700; color: var(--text);
+      margin-bottom: 0.75rem; line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--text-muted); font-size: 1rem;
+      max-width: 560px; margin-bottom: 2.5rem;
+    }
+
+    /* WHY */
+    #why { background: var(--bg); }
+    .cards-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    }
+    @media(min-width: 600px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
+    @media(min-width: 900px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .card {
+      background: var(--white); border-radius: 12px;
+      padding: 1.75rem 1.5rem; border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,107,138,0.12); }
+    .card-icon {
+      width: 48px; height: 48px; background: var(--bg);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.5rem; margin-bottom: 1rem;
+    }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* SERVICES */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    @media(min-width: 700px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .service-card {
+      background: var(--bg); border-radius: 12px;
+      padding: 1.5rem 1rem; text-align: center;
+      border: 1px solid var(--border);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .service-card:hover { background: var(--primary); transform: translateY(-2px); }
+    .service-card:hover h3, .service-card:hover .service-icon, .service-card:hover p { color: var(--white); }
+    .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .service-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .service-card p { font-size: 0.8rem; color: var(--text-muted); }
+    .service-card:hover p { color: rgba(255,255,255,0.8); }
+
+    /* TESTIMONIALS */
+    #testimonials { background: var(--primary-dark); }
+    #testimonials .section-title { color: var(--white); }
+    #testimonials .section-label { color: rgba(255,255,255,0.7); }
+    #testimonials .section-sub { color: rgba(255,255,255,0.7); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    }
+    @media(min-width: 640px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
+    .testimonial {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px; padding: 1.75rem 1.5rem;
+    }
+    .testimonial-stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; }
+    .testimonial p { color: rgba(255,255,255,0.9); font-style: italic; margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.6; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: var(--white); font-size: 0.9rem;
+    }
+    .testimonial-name { font-weight: 600; color: var(--white); font-size: 0.9rem; }
+    .testimonial-detail { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+
+    /* HOW */
+    #how { background: var(--bg); }
+    .steps { display: flex; flex-direction: column; gap: 1.5rem; }
+    @media(min-width: 700px) { .steps { flex-direction: row; gap: 1.25rem; } }
+    .step {
+      flex: 1; background: var(--white); border-radius: 12px;
+      padding: 1.75rem 1.5rem; border: 1px solid var(--border);
+    }
+    .step-number {
+      width: 40px; height: 40px; background: var(--primary);
+      color: var(--white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* GALLERY */
+    #gallery { background: var(--white); }
+    .gallery-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    @media(min-width: 480px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+    @media(min-width: 768px) { .gallery-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* CONTACT */
+    #contact { background: var(--bg); }
+    .contact-wrapper {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+    }
+    @media(min-width: 700px) { .contact-wrapper { grid-template-columns: 1fr 1fr; } }
+    .contact-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+    .contact-item-icon {
+      width: 36px; height: 36px; background: var(--primary);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .contact-item-text strong { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px; }
+    .contact-item-text span { font-size: 0.95rem; font-weight: 500; }
+
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    form input, form textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      background: var(--white); color: var(--text);
+      transition: border-color 0.2s;
+    }
+    form input:focus, form textarea:focus { outline: none; border-color: var(--primary); }
+    form textarea { min-height: 110px; resize: vertical; }
+    .btn-submit {
+      background: var(--primary); color: var(--white); border: none;
+      padding: 1rem; border-radius: 8px; font-weight: 700; font-size: 1rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.8);
+      padding: 2.5rem 1.5rem; text-align: center;
+    }
+    .footer-inner { max-width: 700px; margin: 0 auto; }
+    .footer-logo { font-weight: 800; font-size: 1.1rem; color: var(--white); margin-bottom: 0.5rem; }
+    .footer-address { font-size: 0.88rem; margin-bottom: 0.4rem; }
+    .footer-hours { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 1.25rem; }
+
+    /* WHATSAPP */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      background: var(--whatsapp); color: var(--white);
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 22px rgba(37,211,102,0.6); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Dr. Juan Antonio Palermo</a>
+  <a href="https://wa.me/541131454419?text=Hola%20Dr.%20Palermo%2C%20quiero%20pedir%20un%20turno" class="nav-cta" target="_blank" rel="noopener">Pedí tu turno</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      4.7 en Google · Pacientes satisfechos
+    </div>
+    <h1 class="hero-title">Dr. Juan Antonio<br>Palermo</h1>
+    <p class="hero-specialty">Médico · Atención personalizada e integral</p>
+    <p class="hero-tagline">Más de una década acompañando la salud de las familias de Aldo Bonzi y la zona oeste del GBA. Tu salud, mi prioridad.</p>
+    <a href="https://wa.me/541131454419?text=Hola%20Dr.%20Palermo%2C%20quiero%20pedir%20un%20turno" class="hero-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Pedí tu turno por WhatsApp
+    </a>
+    <div class="hero-creds">
+      <span class="hero-cred">✓ Matrícula habilitada</span>
+      <span class="hero-cred">✓ Atención personalizada</span>
+      <span class="hero-cred">✓ Respuesta rápida</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <p class="section-label">¿Por qué elegirme?</p>
+    <h2 class="section-title">Experiencia y confianza en cada consulta</h2>
+    <p class="section-sub">Mi reputación de 4.7 estrellas en Google habla por mis pacientes. Conocé por qué me eligen.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>Reputación comprobada</h3>
+        <p>4.7 estrellas en Google reflejan el compromiso y la calidad de atención que ofrezco a cada paciente que me visita.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Turnos sin complicaciones</h3>
+        <p>Reservá tu turno por WhatsApp en segundos. Sin filas telefónicas, sin esperas innecesarias. Simple y rápido.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3>Formación y experiencia</h3>
+        <p>Años de práctica médica en el GBA con formación continua. Tus consultas son atendidas con profesionalismo y empatía.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label">Servicios</p>
+    <h2 class="section-title">Atención integral para vos y tu familia</h2>
+    <p class="section-sub">Desde consultas de rutina hasta urgencias, con las principales obras sociales y prepagas.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🩺</div>
+        <h3>Consultas Médicas</h3>
+        <p>Clínica médica general y medicina familiar para todas las edades</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔬</div>
+        <h3>Especialidades</h3>
+        <p>Derivación a especialistas de confianza con seguimiento personalizado</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚑</div>
+        <h3>Urgencias</h3>
+        <p>Atención rápida ante urgencias médicas con diagnóstico oportuno</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📅</div>
+        <h3>Turnos Online</h3>
+        <p>Agendá tu consulta 24/7 por WhatsApp sin necesidad de llamar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-label">Lo que dicen mis pacientes</p>
+    <h2 class="section-title">Confianza que se construye consulta a consulta</h2>
+    <p class="section-sub">El bienestar de mis pacientes es mi mayor satisfacción profesional.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"El Dr. Palermo es muy profesional y dedicado. Se toma el tiempo de escuchar y explicar todo con claridad. Hace años que lo consulto y nunca me falló."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AM</div>
+          <div>
+            <div class="testimonial-name">Ana Martínez</div>
+            <div class="testimonial-detail">Paciente · Aldo Bonzi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Muy cómodo poder pedir turno por WhatsApp. Me atendió puntual y con mucha amabilidad. Lo recomiendo a toda la familia, es un médico de confianza total."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">CR</div>
+          <div>
+            <div class="testimonial-name">Carlos Rivas</div>
+            <div class="testimonial-detail">Paciente · La Matanza</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <p class="section-label">¿Cómo funciona?</p>
+    <h2 class="section-title">Tu consulta en tres pasos simples</h2>
+    <p class="section-sub">Sin burocracia ni demoras innecesarias.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Escribime por WhatsApp</h3>
+        <p>Contame tu motivo de consulta y te confirmo disponibilidad en el día.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Coordinamos el turno</h3>
+        <p>Acordamos el día y horario que mejor te venga sin filas ni esperas.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Te atiendo en consultorio</h3>
+        <p>Recibís atención personalizada con diagnóstico claro y seguimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-label">El consultorio</p>
+    <h2 class="section-title">Un espacio de confianza y comodidad</h2>
+    <p class="section-sub">Ambiente limpio, equipado y pensado para tu comodidad durante la consulta.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80" alt="Médico profesional">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=800&q=80" alt="Consultorio médico">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=800&q=80" alt="Atención médica">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">¿Querés pedir un turno?</h2>
+    <p class="section-sub">Escribime o completá el formulario y me comunico a la brevedad.</p>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Dónde encontrarme</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Dirección</strong>
+            <span>Libertad 632, B1785AMF<br>Aldo Bonzi, Provincia de Buenos Aires</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-text">
+            <strong>Horario de atención</strong>
+            <span>Lunes a Viernes: 9:00 – 19:00 hs<br>Sábados con turno previo</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">💬</div>
+          <div class="contact-item-text">
+            <strong>WhatsApp</strong>
+            <span>+54 11 3145-4419</span>
+          </div>
+        </div>
+      </div>
+      <form action="https://formspree.io/f/PLACEHOLDER" method="POST">
+        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+        <input type="tel" name="telefono" placeholder="Tu teléfono">
+        <input type="email" name="email" placeholder="Tu email">
+        <textarea name="mensaje" placeholder="Motivo de consulta o mensaje..."></textarea>
+        <button type="submit" class="btn-submit">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Dr. Juan Antonio Palermo · Médico</div>
+    <p class="footer-address">Libertad 632, B1785AMF · Aldo Bonzi, Buenos Aires</p>
+    <p class="footer-hours">Atención: Lunes a Viernes 9:00–19:00 · Sábados con turno previo</p>
+    <p class="footer-copy">&copy; 2026 Dr. Juan Antonio Palermo. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING -->
+<a href="https://wa.me/541131454419?text=Hola%20Dr.%20Palermo%2C%20quiero%20pedir%20un%20turno" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>
