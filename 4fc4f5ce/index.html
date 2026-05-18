@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lic. Klga. Ftra. Bertolotti Mariana — Kinesiologia Caballito | CABA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1a6b8a;--primary-dark:#0f4a61;--primary-light:#2a8aad;--bg:#f0f7fa;--white:#ffffff;--muted:#4a6477;--text:#1a2e3b;--border:#d0e8f2}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);transition:background .35s,box-shadow .35s}
+.navbar.scrolled{background:rgba(240,247,250,0.97);box-shadow:0 1px 24px rgba(26,107,138,0.1)}
+.navbar.scrolled .nav-logo{color:var(--primary)}
+.navbar.scrolled .nav-links a{color:var(--muted)}
+.navbar.scrolled .nav-cta{background:var(--primary);color:#fff;border-color:var(--primary)}
+.nav-logo{font-size:1.05rem;font-weight:700;color:#fff;text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;color:rgba(255,255,255,0.82);font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:rgba(255,255,255,0.15);color:#fff;padding:9px 22px;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);transition:background .2s,color .2s}
+.nav-cta:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:768px){.navbar{padding:0 20px}.nav-links{display:none}}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#0f4a61,#1a6b8a,#2a8aad);position:relative;overflow:hidden;padding:100px 24px 60px}
+.hero-shape{position:absolute;top:-80px;right:-120px;width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none}
+.hero-shape2{position:absolute;bottom:-100px;left:-80px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,0.03);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);font-size:.78rem;font-weight:600;padding:6px 18px;border-radius:20px;margin-bottom:28px;border:1px solid rgba(255,255,255,0.2);letter-spacing:.5px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 span{color:rgba(255,255,255,0.7)}
+.hero p{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,0.82);max-width:600px;margin:0 auto 40px}
+.hero-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.btn-primary{background:#fff;color:var(--primary-dark);font-weight:700;padding:14px 34px;border-radius:10px;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.2)}
+.btn-outline{background:transparent;color:#fff;font-weight:600;padding:14px 34px;border-radius:10px;text-decoration:none;font-size:1rem;border:2px solid rgba(255,255,255,0.5);transition:border-color .2s,background .2s}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:64px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:2.2rem;font-weight:700;color:#fff;display:block;line-height:1}
+.stat-label{font-size:.82rem;color:rgba(255,255,255,0.65);margin-top:4px;display:block}
+section{padding:90px 24px}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.78rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;display:block}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:16px;letter-spacing:-.5px}
+.section-line{width:48px;height:4px;background:var(--primary);border-radius:2px;margin-bottom:48px}
+.why{background:var(--white)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.card{background:var(--bg);border-radius:16px;padding:32px 28px;border:1px solid var(--border);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(26,107,138,0.12)}
+.card-icon{width:52px;height:52px;background:var(--primary);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.card-icon svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+.card p{font-size:.93rem;color:var(--muted);line-height:1.65}
+.services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.service-card{background:var(--white);border-radius:14px;padding:28px 24px;border-top:4px solid var(--primary);box-shadow:0 2px 12px rgba(26,107,138,0.06);transition:transform .25s,box-shadow .25s}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(26,107,138,0.13)}
+.service-card h3{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--primary-dark)}
+.service-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:36px}}
+.about-text p{font-size:.97rem;color:var(--muted);line-height:1.75;margin-bottom:16px}
+.about-img{border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(26,107,138,0.15)}
+.about-img img{width:100%;height:420px;object-fit:cover;display:block}
+.testimonials{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.testi-card{background:var(--white);border-radius:16px;padding:32px 28px;box-shadow:0 2px 16px rgba(26,107,138,0.07);border:1px solid var(--border);transition:transform .25s,box-shadow .25s}
+.testi-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(26,107,138,0.12)}
+.stars{display:flex;gap:4px;margin-bottom:16px}
+.stars svg{width:18px;height:18px;fill:#f59e0b}
+.testi-text{font-size:.95rem;color:var(--muted);line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{font-weight:700;font-size:.92rem;color:var(--text)}
+.testi-role{font-size:.82rem;color:var(--muted)}
+.how{background:var(--white)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+.step{text-align:center;padding:16px}
+.step-num{width:56px;height:56px;background:var(--primary);border-radius:50%;color:#fff;font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.step h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+.step p{font-size:.9rem;color:var(--muted);line-height:1.65}
+.contact{background:linear-gradient(140deg,#0f4a61,#1a6b8a)}
+.contact .section-tag{color:rgba(255,255,255,0.7)}
+.contact .section-title{color:#fff}
+.contact .section-line{background:rgba(255,255,255,0.4)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+.contact-info p{color:rgba(255,255,255,0.8);font-size:.97rem;line-height:1.75;margin-bottom:28px}
+.contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.contact-detail svg{width:20px;height:20px;stroke:rgba(255,255,255,0.7);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.contact-detail span{color:rgba(255,255,255,0.85);font-size:.93rem}
+.contact-form{background:rgba(255,255,255,0.06);border-radius:20px;padding:36px;border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(6px)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:8px}
+.form-group input,.form-group textarea{width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.4)}
+.form-group input:focus,.form-group textarea:focus{border-color:rgba(255,255,255,0.4)}
+.form-group textarea{resize:vertical;min-height:120px}
+.btn-submit{width:100%;padding:14px;background:#fff;color:var(--primary-dark);border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+footer{background:var(--primary-dark);padding:40px 24px}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-name{font-weight:700;color:#fff;font-size:1rem}
+.footer-details{font-size:.85rem;color:rgba(255,255,255,0.55)}
+.footer-details p{margin-bottom:4px}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,0.45);text-decoration:none;transition:transform .25s,box-shadow .25s}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(37,211,102,0.55)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="#hero" class="nav-logo">Klga. Bertolotti Mariana</a>
+  <ul class="nav-links">
+    <li><a href="#porque">Por que elegirnos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/541554935579" target="_blank" class="nav-cta">Pedi turno</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-shape"></div>
+  <div class="hero-shape2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Kinesiologia — Caballito · CABA</div>
+    <h1>Lic. Klga. Ftra. <span>Bertolotti</span> Mariana</h1>
+    <p>Kinesiologia y fisioterapia en Caballito. Consultorio en planta baja en Hortiguera con atencion personalizada y turnos rapidos.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/541554935579" target="_blank" class="btn-primary">Pedi tu turno</a>
+      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-count="200">0</span><span class="stat-label">Pacientes atendidos</span></div>
+      <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label">Anos de experiencia</span></div>
+      <div class="stat"><span class="stat-num">✓</span><span class="stat-label">Turnos disponibles</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="porque">
+  <div class="container">
+    <span class="section-tag reveal">Por que elegirnos</span>
+    <h2 class="section-title reveal">Tu kine de confianza en Caballito</h2>
+    <div class="section-line reveal"></div>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Acceso sin escaleras</h3>
+        <p>Consultorio en planta baja en Hortiguera 236, ideal para pacientes con movilidad reducida o en recuperacion.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>La kine del barrio</h3>
+        <p>Caballito tiene mucha demanda de kinesiologia. Mariana te atiende con la calidez y el conocimiento de quien trabaja en el barrio.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Para pacientes nuevos y de referidos</h3>
+        <p>Ya seas nuevo en el barrio o vengas por recomendacion, encontras la misma calidad de atencion en cada sesion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="container">
+    <span class="section-tag reveal">Especialidades</span>
+    <h2 class="section-title reveal">Nuestros servicios</h2>
+    <div class="section-line reveal"></div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <h3>Kinesiologia Deportiva</h3>
+        <p>Recuperacion de lesiones deportivas y retorno al deporte de forma segura.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Rehabilitacion Post-quirurgica</h3>
+        <p>Plan personalizado de recuperacion funcional luego de cualquier cirugia ortopedica.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Kinesiologia Respiratoria</h3>
+        <p>Tecnicas de fisioterapia respiratoria para mejorar la funcion pulmonar y el drenaje bronquial.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Traumatologia y Lesiones</h3>
+        <p>Atencion de fracturas, esguinces, tendinitis y lesiones del sistema musculoesqueletico.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Pilates Terapeutico</h3>
+        <p>Ejercicios de pilates clinico para mejorar postura, columna y prevenir lesiones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-tag">La profesional</span>
+        <h2 class="section-title">Trayectoria y vocacion de servicio</h2>
+        <div class="section-line"></div>
+        <p>La Lic. Mariana Bertolotti es kinesióloga y fisioterapeuta con consultorio en Hortiguera 236 PB, Caballito. Especializada en rehabilitacion musculoesqueletica con anos de trayectoria en el barrio.</p>
+        <p>Caballito es un barrio con mucha demanda de kinesiologia. Mariana ofrece atencion de alta calidad con horarios flexibles y turnos rapidos para que puedas comenzar tu tratamiento sin demoras.</p>
+        <a href="https://wa.me/541554935579" target="_blank" style="display:inline-block;margin-top:12px;background:var(--primary);color:#fff;padding:13px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.95rem;">Consulta gratis por WhatsApp</a>
+      </div>
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80" alt="Consultorio kinesiologia Caballito">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <span class="section-tag reveal">Testimonios</span>
+    <h2 class="section-title reveal">Lo que dicen los pacientes</h2>
+    <div class="section-line reveal"></div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testi-text">"Me trate con Mariana despues de una fractura de tibia y la recuperacion fue excelente. Trato muy humano y muy profesional."</p>
+        <div class="testi-author">Luis P.</div>
+        <div class="testi-role">Rehabilitacion de fractura, Caballito</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testi-text">"Vine por una contractura en el trapecio que no me dejaba trabajar y en tres sesiones ya me senti mucho mejor. Muy recomendable."</p>
+        <div class="testi-author">Carolina M.</div>
+        <div class="testi-role">Contractura muscular, Caballito</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="testi-text">"La planta baja es ideal para mi mama que usa andador. Excelente profesional y muy accesible para personas con movilidad reducida."</p>
+        <div class="testi-author">Jorge B.</div>
+        <div class="testi-role">Rehabilitacion adulto mayor, Caballito</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="como">
+  <div class="container">
+    <span class="section-tag reveal">El proceso</span>
+    <h2 class="section-title reveal">Como comenzar tu tratamiento</h2>
+    <div class="section-line reveal"></div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Pedi tu turno</h3>
+        <p>Contactanos por WhatsApp o por el formulario. Te respondemos el mismo dia.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>Primera evaluacion</h3>
+        <p>Diagnostico completo de tu condicion para armar el plan de tratamiento personalizado.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>Empeza a mejorar</h3>
+        <p>Seguimos el tratamiento con seguimiento constante hasta lograr tu recuperacion completa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag reveal">Contacto</span>
+        <h2 class="section-title reveal">Escribinos hoy</h2>
+        <div class="section-line reveal"></div>
+        <p>Consultorio en Caballito, CABA. Turnos disponibles de lunes a sabado.</p>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Hortiguera 236 PB, Caballito, CABA</span></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Lunes a Viernes 9-18hs | Sabados 9-13hs</span></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>+54 15 5493-5579</span></div>
+      </div>
+      <div class="contact-form reveal">
+        <form action="https://formspree.io/f/PLACEHOLDER" method="POST">
+          <div class="form-group"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label>Telefono / WhatsApp</label><input type="tel" name="telefono" placeholder="11 xxxx-xxxx" required></div>
+          <div class="form-group"><label>Contanos que necesitas</label><textarea name="mensaje" placeholder="Cual es tu problema o consulta?"></textarea></div>
+          <button type="submit" class="btn-submit">Enviar consulta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-name">Lic. Klga. Ftra. Bertolotti Mariana</div><div class="footer-details" style="margin-top:6px;"><p>Kinesióloga y Fisioterapeuta — Caballito, CABA</p></div></div>
+    <div class="footer-details" style="text-align:right;"><p>Hortiguera 236 PB, Caballito, CABA</p><p>Lunes a Viernes 9-18hs | Sabados 9-13hs</p><p>+54 15 5493-5579</p></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/541554935579" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
+const reveals=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const siblings=Array.from(entry.target.parentElement.querySelectorAll('.reveal'));const idx=siblings.indexOf(entry.target);setTimeout(()=>entry.target.classList.add('visible'),idx*100);ro.unobserve(entry.target);}});},{threshold:0.12});
+reveals.forEach(el=>ro.observe(el));
+const counters=document.querySelectorAll('[data-count]');
+const co=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const target=+entry.target.getAttribute('data-count');let current=0;const step=target/100;const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer);}entry.target.textContent=Math.floor(current)+(target>=100?'+':'');},16);co.unobserve(entry.target);}});},{threshold:0.5});
+counters.forEach(el=>co.observe(el));
+</script>
+</body>
+</html>
